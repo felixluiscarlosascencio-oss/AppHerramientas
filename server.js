@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public'))) //Carpeta "public" para 
 
 //2. RUTAS (API) Test: Postman
 app.use('/api/productos', require('./routes/productos')) //Rutas de la API
-app.use('/api/marcas', require('./routes/marcas')) //Rutas de la API
+app.use('/api/marca', require('./routes/marca')) //Rutas de la API
 
 //3. todo lo que no tien ruta o el servidor no lo direccionar
 //SPA = Single Page Application -> http://localhost:3000/
