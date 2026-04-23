@@ -13,7 +13,7 @@ const pool = mysql.createPool({
     waitForConnections: true, //Esperar si no hay conexiones disponibles
     connectionLimit: 10, //Número máximo de conexiones en el pool
     queueLimit: 50, //Número máximo de solicitudes en espera (0 = sin límite)
-    timezone: '-05:00' //Zona horaria UTC
+    timezone: '00:00' //Zona horaria UTC
   });
 
   //Ejecutar la conexion IIFE
