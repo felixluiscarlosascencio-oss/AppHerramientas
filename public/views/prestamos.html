@@ -1,0 +1,137 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Préstamos</h1>
+    <p class="page-subtitle">Registra y gestiona los préstamos de herramientas</p>
+  </div>
+  <button class="btn-primary-action" id="btnNuevoPrestamo">
+    <i class="bi bi-plus-lg"></i> Nuevo Préstamo
+  </button>
+</div>
+
+<div class="search-bar-row">
+  <div class="search-input-wrap">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" id="searchPrestamo" class="search-input" placeholder="Buscar por usuario, herramienta…" />
+  </div>
+  <select id="filterEstadoPrestamo" class="filter-select">
+    <option value="">Todos los estados</option>
+    <option value="activo">Activo</option>
+    <option value="devuelto">Devuelto</option>
+    <option value="atrasado">Atrasado</option>
+  </select>
+  <button class="btn-icon-outline" id="btnRefreshPrestamos" title="Recargar">
+    <i class="bi bi-arrow-clockwise"></i>
+  </button>
+</div>
+
+<div class="card-panel">
+  <div class="table-responsive">
+    <table class="table-custom">
+      <thead>
+        <tr><th>#</th><th>Usuario</th><th>Herramienta</th><th>Cantidad</th><th>Fecha Salida</th><th>Devolución Esp.</th><th>Estado</th><th>Acciones</th></tr>
+      </thead>
+      <tbody id="bodyPrestamos">
+        <tr><td colspan="8" class="text-center py-5"><div class="spinner-custom"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-footer">
+    <span class="text-muted text-sm" id="totalPrestamosLabel">Cargando…</span>
+  </div>
+</div>
+
+<!-- MODAL PRÉSTAMO -->
+<div class="modal-overlay" id="modalPrestamoOverlay">
+  <div class="modal-panel">
+    <div class="modal-header-custom">
+      <div>
+        <div class="modal-title-custom" id="modalPrestamoTitle">Nuevo Préstamo</div>
+        <div class="modal-subtitle" id="modalPrestamoSubtitle">Completa los campos del formulario</div>
+      </div>
+      <button class="btn-modal-close" id="btnCloseModalPrestamo"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="modal-body-custom">
+      <input type="hidden" id="prestamoId" />
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label-custom">Usuario <span class="required">*</span></label>
+          <select id="prUsuario" class="input-custom" required>
+            <option value="">— Seleccionar usuario —</option>
+          </select>
+          <div class="field-error" id="err-prUsuario"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Herramienta <span class="required">*</span></label>
+          <select id="prHerramienta" class="input-custom" required>
+            <option value="">— Seleccionar herramienta —</option>
+          </select>
+          <div class="field-error" id="err-prHerramienta"></div>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label-custom">Cantidad</label>
+          <input type="number" id="prCantidad" class="input-custom" value="1" min="1" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label-custom">Fecha de Salida <span class="required">*</span></label>
+          <input type="date" id="prFechaSalida" class="input-custom" required />
+          <div class="field-error" id="err-prFechaSalida"></div>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label-custom">Devolución Esperada <span class="required">*</span></label>
+          <input type="date" id="prFechaDevolucion" class="input-custom" required />
+          <div class="field-error" id="err-prFechaDevolucion"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Área de Uso</label>
+          <input type="text" id="prAreaUso" class="input-custom" placeholder="Ej: Producción, Mantenimiento" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Motivo</label>
+          <input type="text" id="prMotivo" class="input-custom" placeholder="Motivo del préstamo" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer-custom">
+      <button class="btn-cancel" id="btnCancelPrestamo">Cancelar</button>
+      <button class="btn-save" id="btnSavePrestamo">
+        <span id="btnSavePrText"><i class="bi bi-check-lg me-1"></i> Registrar</span>
+        <span id="btnSavePrSpinner" class="d-none"><div class="spinner-sm"></div></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DEVOLUCIÓN RÁPIDA -->
+<div class="modal-overlay" id="modalDevolucionRapidaOverlay">
+  <div class="modal-panel modal-sm">
+    <div class="modal-header-custom">
+      <div class="modal-title-custom" style="color:var(--success)">
+        <i class="bi bi-arrow-return-left me-2"></i>Registrar Devolución
+      </div>
+      <button class="btn-modal-close" id="btnCloseDevolucionRapida"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="modal-body-custom">
+      <p class="text-muted" id="devolucionRapidaMsg"></p>
+      <div class="row g-3 mt-1">
+        <div class="col-12">
+          <label class="form-label-custom">Estado de la herramienta al devolver</label>
+          <select id="devEstado" class="input-custom">
+            <option value="bueno">Bueno</option>
+            <option value="regular">Regular</option>
+            <option value="dañado">Dañado</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="form-label-custom">Observaciones</label>
+          <textarea id="devObservaciones" class="input-custom" rows="2" placeholder="Observaciones sobre la devolución…"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer-custom">
+      <button class="btn-cancel" id="btnCancelDevolucionRapida">Cancelar</button>
+      <button class="btn-save" id="btnConfirmDevolucion" style="background:var(--success)">
+        <i class="bi bi-check-lg me-1"></i> Confirmar Devolución
+      </button>
+    </div>
+  </div>
+</div>

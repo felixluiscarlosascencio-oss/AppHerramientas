@@ -1,0 +1,133 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Herramientas</h1>
+    <p class="page-subtitle">Administra el inventario de herramientas</p>
+  </div>
+  <button class="btn-primary-action" id="btnNuevaHerramienta">
+    <i class="bi bi-plus-lg"></i> Nueva Herramienta
+  </button>
+</div>
+
+<div class="search-bar-row">
+  <div class="search-input-wrap">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" id="searchHerramienta" class="search-input" placeholder="Buscar por nombre, código, marca…" />
+  </div>
+  <select id="filterEstado" class="filter-select">
+    <option value="">Todos los estados</option>
+    <option value="disponible">Disponible</option>
+    <option value="prestada">Prestada</option>
+    <option value="mantenimiento">Mantenimiento</option>
+    <option value="dañada">Dañada</option>
+  </select>
+  <button class="btn-icon-outline" id="btnRefreshHerramientas" title="Recargar">
+    <i class="bi bi-arrow-clockwise"></i>
+  </button>
+</div>
+
+<div class="card-panel">
+  <div class="table-responsive">
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Herramienta</th>
+          <th>Código</th>
+          <th>Categoría</th>
+          <th>Estado</th>
+          <th>Stock</th>
+          <th>Ubicación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="bodyHerramientas">
+        <tr><td colspan="8" class="text-center py-5"><div class="spinner-custom"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-footer">
+    <span class="text-muted text-sm" id="totalHerramientasLabel">Cargando…</span>
+  </div>
+</div>
+
+<!-- MODAL HERRAMIENTA -->
+<div class="modal-overlay" id="modalHerramientaOverlay">
+  <div class="modal-panel">
+    <div class="modal-header-custom">
+      <div>
+        <div class="modal-title-custom" id="modalHerramientaTitle">Nueva Herramienta</div>
+        <div class="modal-subtitle" id="modalHerramientaSubtitle">Completa los campos del formulario</div>
+      </div>
+      <button class="btn-modal-close" id="btnCloseModalHerramienta"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="modal-body-custom">
+      <form id="formHerramienta" novalidate>
+        <input type="hidden" id="herramientaId" />
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label-custom">Código <span class="required">*</span></label>
+            <input type="text" id="hCodigo" class="input-custom" placeholder="Ej: HM-001" maxlength="50" required />
+            <div class="field-error" id="err-hCodigo"></div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label-custom">Nombre <span class="required">*</span></label>
+            <input type="text" id="hNombre" class="input-custom" placeholder="Ej: Taladro Percutor 750W" maxlength="150" required />
+            <div class="field-error" id="err-hNombre"></div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label-custom">Tipo</label>
+            <input type="text" id="hTipo" class="input-custom" placeholder="Ej: Eléctrica, Manual" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label-custom">Marca</label>
+            <input type="text" id="hMarca" class="input-custom" placeholder="Ej: Bosch, Stanley" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label-custom">Modelo</label>
+            <input type="text" id="hModelo" class="input-custom" placeholder="Ej: GSB 19-2 RE" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label-custom">Número de Serie</label>
+            <input type="text" id="hNumSerie" class="input-custom" placeholder="Ej: SN20240001" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label-custom">Estado</label>
+            <select id="hEstado" class="input-custom">
+              <option value="disponible">Disponible</option>
+              <option value="prestada">Prestada</option>
+              <option value="mantenimiento">Mantenimiento</option>
+              <option value="dañada">Dañada</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label-custom">Cantidad Total</label>
+            <input type="number" id="hCantidad" class="input-custom" placeholder="1" min="1" value="1" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label-custom">Categoría</label>
+            <select id="hCategoria" class="input-custom">
+              <option value="">— Sin categoría —</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label-custom">Proveedor</label>
+            <select id="hProveedor" class="input-custom">
+              <option value="">— Sin proveedor —</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label class="form-label-custom">Ubicación</label>
+            <input type="text" id="hUbicacion" class="input-custom" placeholder="Ej: Estante A1, Bodega Principal" />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer-custom">
+      <button class="btn-cancel" id="btnCancelHerramienta">Cancelar</button>
+      <button class="btn-save" id="btnSaveHerramienta">
+        <span id="btnSaveHText"><i class="bi bi-check-lg me-1"></i> Guardar</span>
+        <span id="btnSaveHSpinner" class="d-none"><div class="spinner-sm"></div></span>
+      </button>
+    </div>
+  </div>
+</div>

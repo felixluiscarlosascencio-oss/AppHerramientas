@@ -1,0 +1,80 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Proveedores</h1>
+    <p class="page-subtitle">Gestiona los proveedores de herramientas</p>
+  </div>
+  <button class="btn-primary-action" id="btnNuevoProveedor">
+    <i class="bi bi-plus-lg"></i> Nuevo Proveedor
+  </button>
+</div>
+
+<div class="search-bar-row">
+  <div class="search-input-wrap">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" id="searchProveedor" class="search-input" placeholder="Buscar por razón social, RUC…" />
+  </div>
+  <button class="btn-icon-outline" id="btnRefreshProveedores" title="Recargar">
+    <i class="bi bi-arrow-clockwise"></i>
+  </button>
+</div>
+
+<div class="card-panel">
+  <div class="table-responsive">
+    <table class="table-custom">
+      <thead>
+        <tr><th>#</th><th>Razón Social</th><th>RUC</th><th>Contacto</th><th>Teléfono</th><th>Email</th><th>Acciones</th></tr>
+      </thead>
+      <tbody id="bodyProveedores">
+        <tr><td colspan="7" class="text-center py-5"><div class="spinner-custom"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-footer">
+    <span class="text-muted text-sm" id="totalProveedoresLabel">Cargando…</span>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalProveedorOverlay">
+  <div class="modal-panel modal-sm">
+    <div class="modal-header-custom">
+      <div>
+        <div class="modal-title-custom" id="modalProveedorTitle">Nuevo Proveedor</div>
+        <div class="modal-subtitle" id="modalProveedorSubtitle">Completa los campos</div>
+      </div>
+      <button class="btn-modal-close" id="btnCloseModalProveedor"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="modal-body-custom">
+      <input type="hidden" id="proveedorId" />
+      <div class="row g-3">
+        <div class="col-12">
+          <label class="form-label-custom">Razón Social <span class="required">*</span></label>
+          <input type="text" id="pRazonSocial" class="input-custom" placeholder="Ej: Ferrelectronics SAC" />
+          <div class="field-error" id="err-pRazonSocial"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">RUC</label>
+          <input type="text" id="pRuc" class="input-custom" placeholder="20501234567" maxlength="20" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Contacto</label>
+          <input type="text" id="pContacto" class="input-custom" placeholder="Nombre del contacto" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Teléfono</label>
+          <input type="text" id="pTelefono" class="input-custom" placeholder="01-234-5678" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Email</label>
+          <input type="email" id="pEmail" class="input-custom" placeholder="ventas@empresa.com" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer-custom">
+      <button class="btn-cancel" id="btnCancelProveedor">Cancelar</button>
+      <button class="btn-save" id="btnSaveProveedor">
+        <span id="btnSavePText"><i class="bi bi-check-lg me-1"></i> Guardar</span>
+        <span id="btnSavePSpinner" class="d-none"><div class="spinner-sm"></div></span>
+      </button>
+    </div>
+  </div>
+</div>

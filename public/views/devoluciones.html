@@ -1,0 +1,32 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Devoluciones</h1>
+    <p class="page-subtitle">Historial de devoluciones de herramientas</p>
+  </div>
+  <button class="btn-icon-outline" id="btnRefreshDevoluciones" title="Recargar">
+    <i class="bi bi-arrow-clockwise"></i>
+  </button>
+</div>
+
+<div class="search-bar-row">
+  <div class="search-input-wrap">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" id="searchDevolucion" class="search-input" placeholder="Buscar por usuario, herramienta…" />
+  </div>
+</div>
+
+<div class="card-panel">
+  <div class="table-responsive">
+    <table class="table-custom">
+      <thead>
+        <tr><th>#</th><th>Usuario</th><th>Herramienta</th><th>Fecha Devolución</th><th>Estado Herramienta</th><th>Observaciones</th></tr>
+      </thead>
+      <tbody id="bodyDevoluciones">
+        <tr><td colspan="6" class="text-center py-5"><div class="spinner-custom"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-footer">
+    <span class="text-muted text-sm" id="totalDevolucionesLabel">Cargando…</span>
+  </div>
+</div>

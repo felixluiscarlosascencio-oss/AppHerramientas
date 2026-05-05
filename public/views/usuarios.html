@@ -1,0 +1,81 @@
+<div class="page-header">
+  <div>
+    <h1 class="page-title">Usuarios</h1>
+    <p class="page-subtitle">Gestiona los usuarios del sistema</p>
+  </div>
+  <button class="btn-primary-action" id="btnNuevoUsuario">
+    <i class="bi bi-plus-lg"></i> Nuevo Usuario
+  </button>
+</div>
+
+<div class="search-bar-row">
+  <div class="search-input-wrap">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" id="searchUsuario" class="search-input" placeholder="Buscar por nombre, DNI, área…" />
+  </div>
+  <button class="btn-icon-outline" id="btnRefreshUsuarios" title="Recargar">
+    <i class="bi bi-arrow-clockwise"></i>
+  </button>
+</div>
+
+<div class="card-panel">
+  <div class="table-responsive">
+    <table class="table-custom">
+      <thead>
+        <tr><th>#</th><th>Nombre</th><th>DNI</th><th>Área</th><th>Turno</th><th>Acciones</th></tr>
+      </thead>
+      <tbody id="bodyUsuarios">
+        <tr><td colspan="6" class="text-center py-5"><div class="spinner-custom"></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-footer">
+    <span class="text-muted text-sm" id="totalUsuariosLabel">Cargando…</span>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalUsuarioOverlay">
+  <div class="modal-panel modal-sm">
+    <div class="modal-header-custom">
+      <div>
+        <div class="modal-title-custom" id="modalUsuarioTitle">Nuevo Usuario</div>
+        <div class="modal-subtitle" id="modalUsuarioSubtitle">Completa los campos</div>
+      </div>
+      <button class="btn-modal-close" id="btnCloseModalUsuario"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="modal-body-custom">
+      <input type="hidden" id="usuarioId" />
+      <div class="row g-3">
+        <div class="col-12">
+          <label class="form-label-custom">Nombre Completo <span class="required">*</span></label>
+          <input type="text" id="uNombre" class="input-custom" placeholder="Ej: Juan Pérez García" />
+          <div class="field-error" id="err-uNombre"></div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">DNI</label>
+          <input type="text" id="uDni" class="input-custom" placeholder="12345678" maxlength="20" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Área</label>
+          <input type="text" id="uArea" class="input-custom" placeholder="Ej: Producción" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label-custom">Turno</label>
+          <select id="uTurno" class="input-custom">
+            <option value="">— Seleccionar —</option>
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noche">Noche</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer-custom">
+      <button class="btn-cancel" id="btnCancelUsuario">Cancelar</button>
+      <button class="btn-save" id="btnSaveUsuario">
+        <span id="btnSaveUText"><i class="bi bi-check-lg me-1"></i> Guardar</span>
+        <span id="btnSaveUSpinner" class="d-none"><div class="spinner-sm"></div></span>
+      </button>
+    </div>
+  </div>
+</div>
